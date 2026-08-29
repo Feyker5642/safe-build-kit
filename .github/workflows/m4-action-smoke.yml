@@ -38,11 +38,6 @@ jobs:
         id: fixture
         run: node scripts/create-action-smoke-fixture.mjs "$RUNNER_TEMP"
 
-      - name: Deliberate red canary for M5B enforcement receipt
-        env:
-          SAFE_BUILD_EVIDENCE: ${{ steps.fixture.outputs.evidence }}
-        run: printf 'tampered\n' >> "$SAFE_BUILD_EVIDENCE/artifacts/deterministic-test-results.txt"
-
       - name: Run reusable Action against the synthetic fixture
         id: safe-build
         uses: ./
@@ -60,5 +55,3 @@ jobs:
         run: |
           test "$SAFE_BUILD_STATUS" = "PASS"
           test "$SAFE_BUILD_EXIT_CODE" = "0"
-
-# M5B identity canary: synchronize
