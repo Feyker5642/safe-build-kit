@@ -56,4 +56,4 @@ jobs:
           test "$SAFE_BUILD_STATUS" = "PASS"
           test "$SAFE_BUILD_EXIT_CODE" = "0"
 
-# M5B identity canary: opened
+# M5B identity canary: synchronize
