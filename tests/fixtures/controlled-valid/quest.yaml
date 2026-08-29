@@ -1,0 +1,18 @@
+version: "0.1"
+id: "controlled-valid"
+title: "Controlled validation fixture"
+goal: "驗證完整的 Controlled Build Pack 契約宣告"
+users:
+  - "Safe Build Kit 測試者"
+profile: controlled
+scope:
+  in:
+    - "驗證 Controlled 契約宣告"
+  out:
+    - "驗證實際交付 Evidence"
+inputs:
+  - "Synthetic controlled fixture"
+outputs:
+  - "確定性的契約驗證結果"
+successCriteria:
+  - "完整 Controlled Build Pack 回傳 PASS"

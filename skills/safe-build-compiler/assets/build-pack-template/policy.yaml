@@ -1,0 +1,11 @@
+version: "0.1"
+allowedPaths:
+  - "Replace with an allowed relative path"
+forbiddenPaths: []
+allowedCommands: []
+forbiddenActions: []
+network: forbidden
+credentials: forbidden
+humanApproval:
+  - "Confirm the Compiler summary before freeze"
+isolationEvidenceRequired: false

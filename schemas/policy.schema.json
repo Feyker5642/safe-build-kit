@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Safe Build Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "allowedPaths",
+    "forbiddenPaths",
+    "allowedCommands",
+    "forbiddenActions",
+    "network",
+    "credentials",
+    "humanApproval",
+    "isolationEvidenceRequired"
+  ],
+  "properties": {
+    "version": {
+      "const": "0.1"
+    },
+    "allowedPaths": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "forbiddenPaths": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "allowedCommands": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "forbiddenActions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "network": {
+      "enum": [
+        "forbidden",
+        "restricted",
+        "allowed"
+      ]
+    },
+    "credentials": {
+      "enum": [
+        "forbidden",
+        "environment-only",
+        "organization-managed"
+      ]
+    },
+    "humanApproval": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "isolationEvidenceRequired": {
+      "type": "boolean"
+    }
+  }
+}

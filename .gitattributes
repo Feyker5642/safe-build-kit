@@ -1,0 +1,2 @@
+# Keep the tracked GitHub Action bundle byte-stable across Windows and Linux.
+action-dist/** text eol=lf

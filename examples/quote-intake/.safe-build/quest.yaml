@@ -1,0 +1,38 @@
+version: "0.1"
+id: "quote-intake-synthetic"
+title: "Synthetic cosmetic carton quote intake"
+goal: "將模糊的彩盒需求整理成固定欄位，忠實保留精度並標示缺少與未知資訊"
+users:
+  - "包裝需求整理人員"
+profile: personal
+scope:
+  in:
+    - "讀取單一 Synthetic Data 文字需求"
+    - "整理數量、尺寸、用途、表面加工與希望交貨時間"
+    - "區分已提供、缺少與未知資訊"
+    - "輸出可供人員後續確認的固定欄位摘要"
+  out:
+    - "自動產生價格或報價"
+    - "寫入 ERP 或其他正式系統"
+    - "寄送電子郵件"
+    - "承諾生產或交貨日期"
+inputs:
+  - "examples/quote-intake/input.md 中的 Synthetic Data 客戶輸入"
+outputs:
+  - "保留原始語意的固定欄位需求摘要"
+  - "缺少資訊清單"
+  - "未知資訊清單"
+successCriteria:
+  - "數量保留為約 3000，不轉成精確承諾"
+  - "局部 UV 位置標示為 unknown，不猜測為 LOGO"
+  - "紙質標示為 missing"
+  - "希望九月底交貨不被改寫成可承諾交期"
+  - "不產生報價、不寫 ERP、不寄信"
+assumptions:
+  - "此輸入只用於 Synthetic Example，不代表真實客戶需求"
+unknowns:
+  - "局部 UV 的位置"
+  - "紙質"
+  - "約 3000 的允許數量公差"
+  - "5×5×12cm 各尺寸的欄位順序"
+  - "希望九月底交貨的年份與可行性"

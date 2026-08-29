@@ -1,0 +1,13 @@
+version: "0.1"
+allowedPaths:
+  - "src/controlled/"
+forbiddenPaths:
+  - ".env"
+allowedCommands: []
+forbiddenActions:
+  - "執行 Build Pack 中的命令"
+network: forbidden
+credentials: forbidden
+humanApproval:
+  - "接受 Controlled 交付"
+isolationEvidenceRequired: true

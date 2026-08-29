@@ -1,0 +1,33 @@
+name: Safe Build Verify
+description: Verify one frozen Build Pack, commit range, and existing Evidence Package.
+
+inputs:
+  build-pack:
+    description: Path to the trusted frozen Build Pack directory.
+    required: true
+  repository:
+    description: Path to the Git repository containing both commit objects.
+    required: true
+  base:
+    description: Explicit base commit OID from the pull request event.
+    required: true
+  head:
+    description: Explicit head commit OID from the pull request event.
+    required: true
+  evidence:
+    description: Path to an existing Evidence Package directory.
+    required: true
+
+outputs:
+  status:
+    description: Canonical PASS, FAIL, OPERATIONAL_ERROR, or BLOCKED status when all Action outputs fit the 512 KiB UTF-16 safety budget.
+  safe-build-exit-code:
+    description: Canonical Safe Build exit code 0, 1, 2, or 3 when all Action outputs fit the 512 KiB UTF-16 safety budget.
+  result-json:
+    description: Canonical ordered VerifyResult JSON when all Action outputs fit the 512 KiB UTF-16 safety budget.
+  trace-json:
+    description: Verification trace JSON with resolved commit OIDs when all Action outputs fit the 512 KiB UTF-16 safety budget.
+
+runs:
+  using: node24
+  main: action-dist/index.js

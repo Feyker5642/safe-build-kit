@@ -1,0 +1,20 @@
+version: "0.1"
+id: "replace-with-build-id"
+title: "Replace with a reviewable title"
+goal: "Replace with the smallest useful outcome"
+users:
+  - "Replace with an intended user"
+profile: personal
+scope:
+  in:
+    - "Replace with an included item"
+  out:
+    - "Replace with an excluded item"
+inputs:
+  - "Replace with a confirmed input"
+outputs:
+  - "Replace with an expected output"
+successCriteria:
+  - "Replace with an observable success condition"
+assumptions: []
+unknowns: []

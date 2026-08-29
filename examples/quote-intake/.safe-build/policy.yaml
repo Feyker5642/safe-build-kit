@@ -1,0 +1,21 @@
+version: "0.1"
+allowedPaths:
+  - "src/quote-intake/"
+  - "tests/quote-intake/"
+forbiddenPaths:
+  - ".env"
+  - "customer-data/"
+  - "production/"
+allowedCommands: []
+forbiddenActions:
+  - "將約 3000 改寫成精確數量承諾"
+  - "猜測局部 UV 的位置"
+  - "自動產生價格或報價"
+  - "寫入 ERP 或其他正式系統"
+  - "寄送電子郵件"
+  - "承諾生產或交貨日期"
+network: forbidden
+credentials: forbidden
+humanApproval:
+  - "確認 Compiler 摘要後凍結 Build Pack"
+isolationEvidenceRequired: false

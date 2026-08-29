@@ -1,0 +1,57 @@
+name: Safe Build M4 Action Smoke
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  m4-action-smoke:
+    name: Safe Build M4
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout pull request head
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+          package-manager-cache: false
+
+      - name: Install source dependencies
+        run: npm ci
+
+      - name: Run source and isolated bundle gates
+        run: npm test
+
+      - name: Verify tracked Action bundle is fresh
+        run: git diff --exit-code -- action-dist
+
+      - name: Create synthetic PASS fixture
+        id: fixture
+        run: node scripts/create-action-smoke-fixture.mjs "$RUNNER_TEMP"
+
+      - name: Run reusable Action against the synthetic fixture
+        id: safe-build
+        uses: ./
+        with:
+          build-pack: ${{ steps.fixture.outputs.build-pack }}
+          repository: ${{ steps.fixture.outputs.repository }}
+          base: ${{ steps.fixture.outputs.base }}
+          head: ${{ steps.fixture.outputs.head }}
+          evidence: ${{ steps.fixture.outputs.evidence }}
+
+      - name: Assert canonical PASS outputs
+        env:
+          SAFE_BUILD_STATUS: ${{ steps.safe-build.outputs.status }}
+          SAFE_BUILD_EXIT_CODE: ${{ steps.safe-build.outputs.safe-build-exit-code }}
+        run: |
+          test "$SAFE_BUILD_STATUS" = "PASS"
+          test "$SAFE_BUILD_EXIT_CODE" = "0"

@@ -1,0 +1,6 @@
+version: "0.1"
+required:
+  - id: "implementation-diff"
+    type: git_diff
+    description: "Show the exact implementation changes"
+    required: true

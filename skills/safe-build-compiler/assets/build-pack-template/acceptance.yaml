@@ -1,0 +1,7 @@
+version: "0.1"
+cases:
+  - id: "replace-with-case-id"
+    type: functional
+    input: "Replace with an exact fixture or condition"
+    expected: "Replace with an observable result"
+    deterministic: true

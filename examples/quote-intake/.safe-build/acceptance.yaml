@@ -1,0 +1,54 @@
+version: "0.1"
+cases:
+  - id: "preserve-approximate-quantity"
+    type: functional
+    input:
+      sourceText: "數量約 3000"
+    expected:
+      quantity:
+        value: 3000
+        precision: approximate
+    deterministic: true
+  - id: "keep-spot-uv-location-unknown"
+    type: negative
+    input:
+      sourceText: "局部 UV"
+    expected:
+      spotUv:
+        requested: true
+        location: unknown
+    deterministic: true
+  - id: "mark-paper-stock-missing"
+    type: negative
+    input:
+      sourceText: "數量約 3000、尺寸 5×5×12cm、保養品彩盒、霧膜、局部 UV、希望九月底交貨。"
+    expected:
+      paperStock:
+        status: missing
+    deterministic: true
+  - id: "do-not-promise-delivery"
+    type: negative
+    input:
+      sourceText: "希望九月底交貨"
+    expected:
+      requestedDelivery: "九月底"
+      year: unknown
+      commitmentMade: false
+    deterministic: true
+  - id: "perform-no-external-side-effects"
+    type: negative
+    input:
+      operation: "整理 Synthetic Data 需求"
+    expected:
+      priceQuoteGenerated: false
+      erpWritten: false
+      emailSent: false
+    deterministic: true
+  - id: "use-synthetic-data-only"
+    type: security
+    input:
+      source: "examples/quote-intake/input.md"
+    expected:
+      dataClassification: synthetic
+      realCustomerIdentifiers: []
+    deterministic: true

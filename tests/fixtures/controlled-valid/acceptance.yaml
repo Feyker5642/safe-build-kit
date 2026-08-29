@@ -1,0 +1,9 @@
+version: "0.1"
+cases:
+  - id: "controlled-contract-is-complete"
+    type: functional
+    input:
+      profile: controlled
+    expected:
+      contractValid: true
+    deterministic: true

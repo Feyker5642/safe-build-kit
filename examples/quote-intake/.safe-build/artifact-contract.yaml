@@ -1,0 +1,22 @@
+version: "0.1"
+required:
+  - id: "implementation-diff"
+    type: git_diff
+    description: "顯示需求整理工具的完整實作差異"
+    required: true
+  - id: "changed-file-list"
+    type: changed_files
+    description: "列出所有新增與修改檔案"
+    required: true
+  - id: "deterministic-test-results"
+    type: test_results
+    description: "保存與 acceptance cases 對應的確定性測試結果"
+    required: true
+  - id: "known-limitations"
+    type: known_limitations
+    description: "列出尚未支援的輸入與所有已知限制"
+    required: true
+  - id: "input-source-traceability"
+    type: source_traceability
+    description: "把輸出欄位追溯到 Synthetic Input 原文或明確的 missing／unknown 狀態"
+    required: true

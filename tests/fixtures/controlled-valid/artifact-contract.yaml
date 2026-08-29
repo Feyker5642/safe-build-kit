@@ -1,0 +1,10 @@
+version: "0.1"
+required:
+  - id: "isolation-proof"
+    type: isolation_evidence
+    description: "要求交付隔離證據"
+    required: true
+  - id: "human-approval"
+    type: human_acceptance
+    description: "要求交付人工接受紀錄"
+    required: true
